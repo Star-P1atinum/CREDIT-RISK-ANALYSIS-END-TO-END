@@ -152,6 +152,43 @@ Combining all findings — the highest risk borrower is:
 
 ---
 
+## Section 8 — Process Reperformance: Loan Amount Integrity
+
+**Objective:** Independently verify whether reported loan amount figures are trustworthy.
+
+**Trigger:** Maximum loan amount of $99,999,999 identified during exploratory checks — flagged as a potential sentinel value.
+
+### Q8.1 — Scale of Contamination
+
+11,484 records (11.48%) contain the sentinel value 99,999,999.  
+88.52% of records have real loan amounts.
+
+### Q8.2 — Reported vs Reperformed Metrics
+
+| Metric | Reported | Reperformed | Variance | Status |
+|---|---|---|---|---|
+| Total Loan Amount | $1.176 Trillion | $27.6 Billion | $1.148T overstated | 🚨 UNRELIABLE |
+| Average Loan Amount | $11,760,447 | $312,314 | $11.4M overstated | 🚨 UNRELIABLE |
+| Amount at Risk | $7,357,114,160 | $7,357,114,160 | $0 | ✅ RELIABLE |
+| Avg Charged Off Loan | $324,975 | $324,975 | $0 | ✅ RELIABLE |
+
+### Q8.3 — Root Cause Confirmation
+
+| Loan Status | Sentinel Count | Sentinel % |
+|---|---|---|
+| Fully Paid | 11,484 | 14.84% |
+| Charged Off | 0 | 0.00% |
+
+**Root cause:** Sentinel values are concentrated 100% in Fully Paid loans — zero in Charged Off loans. Likely cause: legacy system overwrites loan amount field with maximum value (99,999,999) upon loan payoff.
+
+### Reperformance Conclusion
+
+The reported total portfolio of $1.176 trillion is overstated by $1.148 trillion. However the amount at risk figure of $7.36 billion and all default rate percentages are fully reliable — sentinel values did not affect Charged Off loan records.
+
+**Files:** `credit_risk_EDA_reperformance.sql` | `Credit_Risk_Reperformance.xlsx`
+
+---
+
 ## Key Recommendations
 
 1. **Implement strict approval criteria for long term business loans to renters with prior credit history.** This profile defaults at nearly double the portfolio average. Require collateral or co-signers, or decline entirely pending risk review.
