@@ -249,13 +249,11 @@ The reported total portfolio of $1.176 trillion is overstated by $1.148 trillion
 
 ---
 
-## Files
+## Power BI Dashboard
 
-| File | Description |
-|---|---|
-| credit_risk_EDA.sql | All analytical queries with section comments and data quality notes |
-| Credit_Risk_Analysis_Findings.xlsx | Formatted findings report — Executive Summary, By Purpose, By Term, By Home Ownership, High Risk Profile |
-| credit_train.csv | Source dataset |
+Executive summary dashboard built in Power BI visualising key findings.
+
+![Dashboard Preview](dashboard_preview.png)
 
 ---
 
