@@ -129,6 +129,40 @@ Records with 6+ problems have sample sizes too small for reliable analysis.
 
 ---
 
+## Section 5.2 — Default Rate by Credit Score Ranges
+
+**Objective:** Identify the optimal credit score threshold for loan approval decisions.
+
+### Q5.2.1 — Data Quality Check
+
+After filtering to valid FICO range (300–850), scores span only 585–751.
+Poor (300–579) and Excellent (800–850) bands contain zero records.
+Valid records for this analysis: **76,295**
+
+### Q5.2.2 — Default Rate by Credit Score Band
+
+| Credit Score Band | Total Loans | Default Rate | Amount At Risk |
+|---|---|---|---|
+| Fair (580–669) | 5,506 | **26.93%** | $626.7M |
+| Good (670–739) | 52,987 | 17.47% | $2.95B |
+| Very Good (740–799) | 17,802 | **10.77%** | $525.3M |
+
+Every 70-point increase in credit score roughly halves the default rate.
+
+**Recommendation:** Set minimum approval threshold at 670. Loans below this default at nearly triple the rate of Very Good borrowers.
+
+### Q5.2.3 — Average Score: Fully Paid vs Charged Off
+
+| Loan Status | Avg Credit Score |
+|---|---|
+| Fully Paid | 718 |
+| Charged Off | 710 |
+
+Only 8 points separate the two groups — confirming credit score alone is a moderate predictor. The high-risk profile combination in Section 7 remains the strongest default indicator.
+
+**Files:** `credit_risk_EDA_credit_score.sql` | `Credit_Score_Analysis.xlsx`
+---
+
 ### Section 6 — Income Band Analysis
 
 **Finding: Abandoned due to data quality.**
