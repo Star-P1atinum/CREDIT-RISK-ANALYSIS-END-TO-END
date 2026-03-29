@@ -1,7 +1,7 @@
 # Credit Risk Analysis — End to End Data Analysis
 
 **Analyst:** Kathiresan Senthilkumar  
-**Tools:** MySQL, Excel  
+**Tools:** MySQL, Excel, Power BI  
 **Dataset:** loan_data — 100,514 rows, 19 columns  
 **Type:** End to End Data Analysis  
 
